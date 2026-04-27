@@ -1,0 +1,15 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type": "Feature","properties":{"name":"Park 1","type":"Recreation"},"geometry":{"type":"Point","coordinates":[-81.655,30.332]}},
+    {"type": "Feature","properties":{"name":"Park 2","type":"Recreation"},"geometry":{"type":"Point","coordinates":[-81.650,30.335]}},
+    {"type": "Feature","properties":{"name":"Park 3","type":"Recreation"},"geometry":{"type":"Point","coordinates":[-81.645,30.338]}},
+    {"type": "Feature","properties":{"name":"Park 4","type":"Recreation"},"geometry":{"type":"Point","coordinates":[-81.640,30.340]}},
+    {"type": "Feature","properties":{"name":"Park 5","type":"Recreation"},"geometry":{"type":"Point","coordinates":[-81.635,30.342]}},
+    {"type": "Feature","properties":{"name":"Park 6","type":"Recreation"},"geometry":{"type":"Point","coordinates":[-81.630,30.344]}},
+    {"type": "Feature","properties":{"name":"Park 7","type":"Recreation"},"geometry":{"type":"Point","coordinates":[-81.625,30.346]}},
+    {"type": "Feature","properties":{"name":"Park 8","type":"Recreation"},"geometry":{"type":"Point","coordinates":[-81.620,30.348]}},
+    {"type": "Feature","properties":{"name":"Park 9","type":"Recreation"},"geometry":{"type":"Point","coordinates":[-81.615,30.350]}},
+    {"type": "Feature","properties":{"name":"Park 10","type":"Recreation"},"geometry":{"type":"Point","coordinates":[-81.610,30.352]}}
+  ]
+}
