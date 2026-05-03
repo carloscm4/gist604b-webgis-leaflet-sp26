@@ -1,10 +1,34 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: #004b87;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+header p {
+    margin-top: 5px;
+    font-size: 14px;
 }
 
 #map {
-  height: 80vh;
-  width: 100%;
+    height: 80vh;
+    width: 100%;
+}
+
+footer {
+    background: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    border-top: 1px solid #ccc;
 }
