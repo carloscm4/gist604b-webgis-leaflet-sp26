@@ -1,21 +1,19 @@
-var map = L.map('map').setView([30.3322, -81.6557], 11); 
-// Jacksonville, FL center
+var map = L.map('map').setView([30.3322, -81.6557], 11);
 
 // Basemap
 var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// ---------------------------
-// LOAD DATA LAYERS
-// ---------------------------
-
-// Parks (Point layer)
+// -------------------
+// PARKS
+// -------------------
 var parks = L.geoJSON(parksData, {
     onEachFeature: function (feature, layer) {
-        if (feature.properties && feature.properties.name) {
-            layer.bindPopup("<b>Park:</b> " + feature.properties.name);
-        }
+        layer.bindPopup(
+            "<b>Park:</b> " + feature.properties.name +
+            "<br><i>City of Jacksonville Public Space</i>"
+        );
     },
     pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, {
@@ -27,7 +25,9 @@ var parks = L.geoJSON(parksData, {
     }
 }).addTo(map);
 
-// Roads (Line layer)
+// -------------------
+// ROADS
+// -------------------
 var roads = L.geoJSON(roadsData, {
     style: function () {
         return {
@@ -37,8 +37,16 @@ var roads = L.geoJSON(roadsData, {
     }
 }).addTo(map);
 
-// Neighborhoods (Polygon layer)
+// -------------------
+// NEIGHBORHOODS
+// -------------------
 var neighborhoods = L.geoJSON(neighborhoodsData, {
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup(
+            "<b>Neighborhood:</b> " + feature.properties.name +
+            "<br><i>Jacksonville, FL Boundary Unit</i>"
+        );
+    },
     style: function () {
         return {
             color: "#2b8cbe",
@@ -49,9 +57,9 @@ var neighborhoods = L.geoJSON(neighborhoodsData, {
     }
 }).addTo(map);
 
-// ---------------------------
-// LAYER CONTROL
-// ---------------------------
+// -------------------
+// LAYERS CONTROL
+// -------------------
 var baseMaps = {
     "OpenStreetMap": osm
 };
@@ -64,7 +72,7 @@ var overlayMaps = {
 
 L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-// ---------------------------
+// -------------------
 // SCALE BAR
-// ---------------------------
+// -------------------
 L.control.scale().addTo(map);
