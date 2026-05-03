@@ -1,0 +1,27 @@
+var roadsData = {
+"type": "FeatureCollection",
+"features": [
+{
+"type": "Feature",
+"properties": { "name": "I-95" },
+"geometry": {
+"type": "LineString",
+"coordinates": [
+[-81.70, 30.40],
+[-81.65, 30.20]
+]
+}
+},
+{
+"type": "Feature",
+"properties": { "name": "I-10" },
+"geometry": {
+"type": "LineString",
+"coordinates": [
+[-81.80, 30.35],
+[-81.50, 30.35]
+]
+}
+}
+]
+};
