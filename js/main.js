@@ -1,6 +1,8 @@
 var map = L.map('map').setView([30.3322, -81.6557], 11);
 
-// Basemap
+// -------------------
+// BASEMAP
+// -------------------
 var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
@@ -10,9 +12,11 @@ var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // -------------------
 var parks = L.geoJSON(parksData, {
     onEachFeature: function (feature, layer) {
+        var name = feature.properties?.name || "Unnamed Park";
+
         layer.bindPopup(
-            "<b>Park:</b> " + feature.properties.name +
-            "<br><i>City of Jacksonville Public Space</i>"
+            "<b>Park:</b> " + name +
+            "<br><i>Public Recreation Site</i>"
         );
     },
     pointToLayer: function (feature, latlng) {
@@ -20,7 +24,8 @@ var parks = L.geoJSON(parksData, {
             radius: 6,
             color: "green",
             fillColor: "green",
-            fillOpacity: 0.7
+            fillOpacity: 0.7,
+            weight: 1
         });
     }
 }).addTo(map);
@@ -31,9 +36,14 @@ var parks = L.geoJSON(parksData, {
 var roads = L.geoJSON(roadsData, {
     style: function () {
         return {
-            color: "black",
-            weight: 2
+            color: "#333",
+            weight: 2,
+            opacity: 0.8
         };
+    },
+    onEachFeature: function (feature, layer) {
+        var name = feature.properties?.name || "Road";
+        layer.bindPopup("<b>Road:</b> " + name);
     }
 }).addTo(map);
 
@@ -41,36 +51,31 @@ var roads = L.geoJSON(roadsData, {
 // NEIGHBORHOODS
 // -------------------
 var neighborhoods = L.geoJSON(neighborhoodsData, {
-    onEachFeature: function (feature, layer) {
-        layer.bindPopup(
-            "<b>Neighborhood:</b> " + feature.properties.name +
-            "<br><i>Jacksonville, FL Boundary Unit</i>"
-        );
-    },
     style: function () {
         return {
             color: "#2b8cbe",
             weight: 2,
             fillColor: "#a6bddb",
-            fillOpacity: 0.3
+            fillOpacity: 0.35
         };
+    },
+    onEachFeature: function (feature, layer) {
+        var name = feature.properties?.name || "Neighborhood";
+        layer.bindPopup("<b>Neighborhood:</b> " + name);
     }
 }).addTo(map);
 
 // -------------------
-// LAYERS CONTROL
+// LAYER CONTROL
 // -------------------
-var baseMaps = {
-    "OpenStreetMap": osm
-};
-
-var overlayMaps = {
-    "Parks": parks,
-    "Roads": roads,
-    "Neighborhoods": neighborhoods
-};
-
-L.control.layers(baseMaps, overlayMaps).addTo(map);
+L.control.layers(
+    { "OpenStreetMap": osm },
+    {
+        "Parks": parks,
+        "Roads": roads,
+        "Neighborhoods": neighborhoods
+    }
+).addTo(map);
 
 // -------------------
 // SCALE BAR
