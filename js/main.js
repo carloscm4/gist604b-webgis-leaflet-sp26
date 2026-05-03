@@ -1,91 +1,70 @@
-// ===============================
-// 1. Initialize the map
-// ===============================
-var map = L.map('map').setView([30.3322, -81.6557], 12); // Jacksonville, FL
+var map = L.map('map').setView([30.3322, -81.6557], 11); 
+// Jacksonville, FL center
 
-// ===============================
-// 2. Add basemap
-// ===============================
+// Basemap
 var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap contributors'
+    attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// ===============================
-// 3. Layer groups
-// ===============================
-var pointLayer = L.layerGroup().addTo(map);
-var lineLayer = L.layerGroup().addTo(map);
-var polygonLayer = L.layerGroup().addTo(map);
+// ---------------------------
+// LOAD DATA LAYERS
+// ---------------------------
 
-// ===============================
-// 4. Load POINT data
-// ===============================
-fetch('data/points.geojson')
-  .then(response => response.json())
-  .then(data => {
-    L.geoJSON(data, {
-      pointToLayer: function (feature, latlng) {
+// Parks (Point layer)
+var parks = L.geoJSON(parksData, {
+    onEachFeature: function (feature, layer) {
+        if (feature.properties && feature.properties.name) {
+            layer.bindPopup("<b>Park:</b> " + feature.properties.name);
+        }
+    },
+    pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, {
-          radius: 6,
-          color: "blue",
-          fillColor: "blue",
-          fillOpacity: 0.7
+            radius: 6,
+            color: "green",
+            fillColor: "green",
+            fillOpacity: 0.7
         });
-      },
-      onEachFeature: function (feature, layer) {
-        layer.bindPopup(
-          "<b>" + feature.properties.name + "</b><br>" +
-          feature.properties.type
-        );
-      }
-    }).addTo(pointLayer);
-  });
-
-// ===============================
-// 5. Load LINE data
-// ===============================
-fetch('data/lines.geojson')
-  .then(response => response.json())
-  .then(data => {
-    L.geoJSON(data, {
-      style: {
-        color: "red",
-        weight: 3
-      },
-      onEachFeature: function (feature, layer) {
-        layer.bindPopup(feature.properties.name);
-      }
-    }).addTo(lineLayer);
-  });
-
-// ===============================
-// 6. Load POLYGON data
-// ===============================
-fetch('data/polygons.geojson')
-  .then(response => response.json())
-  .then(data => {
-    L.geoJSON(data, {
-      style: {
-        color: "green",
-        fillColor: "green",
-        fillOpacity: 0.3
-      },
-      onEachFeature: function (feature, layer) {
-        layer.bindPopup(feature.properties.name);
-      }
-    }).addTo(polygonLayer);
-  });
-
-// ===============================
-// 7. Layer control
-// ===============================
-L.control.layers(null, {
-  "Points": pointLayer,
-  "Lines": lineLayer,
-  "Polygons": polygonLayer
+    }
 }).addTo(map);
 
-// ===============================
-// 8. Scale bar
-// ===============================
+// Roads (Line layer)
+var roads = L.geoJSON(roadsData, {
+    style: function () {
+        return {
+            color: "black",
+            weight: 2
+        };
+    }
+}).addTo(map);
+
+// Neighborhoods (Polygon layer)
+var neighborhoods = L.geoJSON(neighborhoodsData, {
+    style: function () {
+        return {
+            color: "#2b8cbe",
+            weight: 2,
+            fillColor: "#a6bddb",
+            fillOpacity: 0.3
+        };
+    }
+}).addTo(map);
+
+// ---------------------------
+// LAYER CONTROL
+// ---------------------------
+var baseMaps = {
+    "OpenStreetMap": osm
+};
+
+var overlayMaps = {
+    "Parks": parks,
+    "Roads": roads,
+    "Neighborhoods": neighborhoods
+};
+
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+// ---------------------------
+// SCALE BAR
+// ---------------------------
 L.control.scale().addTo(map);
