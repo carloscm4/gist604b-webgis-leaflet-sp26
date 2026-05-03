@@ -1,8 +1,10 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background: #f5f5f5;
 }
 
+/* Header */
 header {
     background: #004b87;
     color: white;
@@ -12,36 +14,44 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 28px;
+    font-size: 26px;
 }
 
 header p {
-    margin-top: 5px;
+    margin: 5px 0 0;
     font-size: 14px;
 }
 
+/* Map */
 #map {
     height: 80vh;
     width: 100%;
 }
 
+/* Footer */
 footer {
-    background: #f2f2f2;
+    background: #eaeaea;
     text-align: center;
     padding: 10px;
-    font-size: 14px;
+    font-size: 13px;
     border-top: 1px solid #ccc;
 }
 
-/* LEGEND */
+/* Legend (FIXED POSITIONING) */
 #legend {
     position: absolute;
-    bottom: 80px;
-    left: 10px;
+    bottom: 100px;
+    left: 15px;
     background: white;
-    padding: 10px;
+    padding: 10px 12px;
     border-radius: 6px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     font-size: 14px;
-    z-index: 1000;
+    z-index: 999;
+    line-height: 1.4;
+}
+
+#legend h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
 }
