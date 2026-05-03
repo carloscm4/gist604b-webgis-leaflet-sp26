@@ -45,9 +45,9 @@ This project is a simple WebGIS application built using Leaflet, HTML, and JavaS
 ## Repository Structure
     .
     ├── data/
-    │   ├── points.geojson
-    │   ├── lines.geojson
-    │   └── polygons.geojson
+    │   ├── neighborhoods.js
+    │   ├── parks.js
+    │   └── roads.js
     ├── js/
     │   └── main.js
     ├── css/
