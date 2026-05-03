@@ -12,17 +12,34 @@
 <body>
 
 <header>
-<h1>Jacksonville Parks & Transportation Access Map</h1>
-<p>Interactive map of parks, roads, and neighborhood boundaries in Jacksonville, Florida.</p>
+  <h1>Jacksonville Parks & Transportation Access Map</h1>
+  <p>
+    This interactive WebGIS map visualizes public parks, major transportation routes, and neighborhood boundaries in Jacksonville, Florida. 
+    It explores spatial relationships between green space access and urban infrastructure.
+  </p>
 </header>
 
 <div id="map"></div>
 
+<!-- Legend -->
+<div id="legend">
+  <h3>Map Legend</h3>
+  <p><span style="color:green;">●</span> Parks</p>
+  <p><span style="color:black;">—</span> Roads</p>
+  <p><span style="color:#2b8cbe;">■</span> Neighborhoods</p>
+</div>
+
 <footer>
-<p>Created by Carlos Castillo | GIST 604B | Spring 2026</p>
+  <p>Created by Carlos Castillo | GIST 604B WebGIS Assignment | Spring 2026</p>
 </footer>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- DATA FILES -->
+<script src="data/parks.geojson"></script>
+<script src="data/roads.geojson"></script>
+<script src="data/neighborhoods.geojson"></script>
+
 <script src="js/main.js"></script>
 
 </body>
