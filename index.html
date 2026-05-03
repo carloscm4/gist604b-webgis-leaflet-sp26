@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jacksonville Parks & Transportation Map</title>
 
+<!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<!-- Your CSS -->
 <link rel="stylesheet" href="css/style.css"/>
 </head>
 
@@ -14,16 +17,16 @@
 <header>
   <h1>Jacksonville Parks & Transportation Access Map</h1>
   <p>
-    This interactive WebGIS map visualizes public parks, major transportation routes, and neighborhood boundaries in Jacksonville, Florida. 
-    It explores spatial relationships between green space access and urban infrastructure.
+    Interactive WebGIS map showing parks, roads, and neighborhoods in Jacksonville, Florida.
   </p>
 </header>
 
+<!-- MAP -->
 <div id="map"></div>
 
-<!-- Legend -->
+<!-- LEGEND -->
 <div id="legend">
-  <h3>Map Legend</h3>
+  <h3>Legend</h3>
   <p><span style="color:green;">●</span> Parks</p>
   <p><span style="color:black;">—</span> Roads</p>
   <p><span style="color:#2b8cbe;">■</span> Neighborhoods</p>
@@ -33,13 +36,17 @@
   <p>Created by Carlos Castillo | GIST 604B WebGIS Assignment | Spring 2026</p>
 </footer>
 
+<!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-<!-- DATA FILES -->
-<script src="data/parks.geojson"></script>
-<script src="data/roads.geojson"></script>
-<script src="data/neighborhoods.geojson"></script>
+<!-- ========================= -->
+<!-- DATA FILES (FIXED ORDER) -->
+<!-- ========================= -->
+<script src="data/parks.js"></script>
+<script src="data/roads.js"></script>
+<script src="data/neighborhoods.js"></script>
 
+<!-- MAIN JS -->
 <script src="js/main.js"></script>
 
 </body>
